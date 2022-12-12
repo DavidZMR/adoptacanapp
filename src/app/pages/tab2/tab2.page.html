@@ -1,0 +1,44 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Reportes de Perros
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+<ion-content [fullscreen]="true">
+  <ion-card *ngFor="let reporte of reportes">
+    <ion-img [src]="reporte.foto">
+
+    </ion-img>
+    <ion-card-header>
+      <ion-card-title>Descripcion</ion-card-title>
+      <ion-card-subtitle>{{reporte.descripcion}}</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <ion-text >
+          Numero de perros
+          <br>
+          <small>{{reporte.numeroPerros}}</small>
+        </ion-text>
+      </ion-item>
+      <ion-item>
+        <ion-text >
+          Ubicacion
+          <br>
+          <small>{{reporte.direccion}}</small>
+        </ion-text>
+      </ion-item>
+      <ion-button (click)="presentAlert(reporte.id)" expand="block" shape="round">
+        <ion-icon class="ion-margin" name="checkmark"></ion-icon>
+        Atender
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

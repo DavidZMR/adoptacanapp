@@ -1,0 +1,60 @@
+
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Perros en Adopción
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+<ion-content [fullscreen]="true">
+
+  <ion-card *ngFor="let perro of perros">
+    <ion-img [src]="perro.foto">
+
+    </ion-img>
+    <ion-card-header>
+      <ion-card-title>Descripcion</ion-card-title>
+      <ion-card-subtitle mode="md">{{perro.descripcion}}</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item>
+        <ion-text>
+          Nombre <br>
+          <small>{{perro.nombre}}</small>
+        </ion-text>
+      </ion-item>
+      <ion-item>
+        <ion-text>
+          Talla
+          <br>
+          <small>{{perro.talla}}</small>
+        </ion-text>
+      </ion-item>
+      <ion-item>
+        <ion-text>
+          Color
+          <br>
+          <small>{{perro.color}}</small>
+        </ion-text>
+      </ion-item>
+      <ion-item>
+        <ion-text>
+          Tamaño altura
+          <br>
+          <small>{{perro.tam}} cm</small>
+        </ion-text>
+      </ion-item>
+
+      <ion-button (click)="presentAlert(perro.id)" expand="block" shape="round">
+        <ion-icon class="ion-margin" name="home"></ion-icon>
+        Adoptar
+      </ion-button>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

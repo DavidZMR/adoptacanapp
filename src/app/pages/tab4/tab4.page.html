@@ -1,0 +1,67 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Atendiendo Reporte
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+  <ion-refresher slot="fixed" (ionRefresh)="handleRefresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+<ion-content [fullscreen]="true" *ngIf="campo" >
+  <ion-content *ngFor="let dato of reporte">
+    <ion-item lines="full" >
+      <ion-text>
+        Detalles <br>
+        <small>{{dato.descripcion}}.</small>
+      </ion-text>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-text>
+        Numero de perros
+        <br>
+        <small>{{dato.numeroPerros}}</small>
+      </ion-text>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-text>
+        Ubicacion <br>
+      <small>{{dato.direccion}}</small>
+      </ion-text>
+    </ion-item>
+    <ion-item lines="full"> 
+      <ion-img [src]="dato.foto">
+        
+      </ion-img>
+    </ion-item >
+    <ion-row>
+      <ion-col>
+        <ion-button expand="block" shape="round" (click)="presentAlertAdoptar(dato.id)">
+          
+          <ion-icon class="ion-margin" name="heart"></ion-icon>
+          Adoptar
+        </ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-button expand="block" shape="round" (click)="presentAlertResguardar(dato.id)">
+          
+          <ion-icon class="ion-margin" name="home"></ion-icon>
+          Resguardar
+        </ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-button expand="block" shape="round" color="danger" (click)="changeStatus('cancelar', dato.id)">
+          
+          <ion-icon class="ion-margin" name="close"></ion-icon>
+          Cancelar
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-content>
+</ion-content>

@@ -1,0 +1,39 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Reportar Perro
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <form action="">
+    <ion-item lines="full">
+      <ion-label position="floating">Numero de perros</ion-label>
+      <ion-input id="numero" type="number" [(ngModel)]="numero" [ngModelOptions]="{standalone: true}" min="1" pattern="^[0-9]+"></ion-input>  
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label position="floating">Descripcion</ion-label>
+      <ion-input type="text" [(ngModel)]="descripcion" [ngModelOptions]="{standalone: true}" required></ion-input>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label position="floating">Direccion</ion-label>
+      <ion-input type="text" [(ngModel)]="direccion" [ngModelOptions]="{standalone: true}" required></ion-input>
+    </ion-item>
+    <ion-row>
+      <ion-col>
+        <ion-button expand="block" fill="outline" shape="round" (click)="addPhotoToGallery()">
+          
+          <ion-icon class="ion-margin" name="camera"></ion-icon>
+          
+          Foto del perro (o perros)
+        </ion-button>
+        <img [src]="foto" alt="">
+      </ion-col>
+    </ion-row>
+    <ion-button expand="block" (click)="reportar()" shape="round">
+      <ion-icon name="add-circle-outline" class="ion-margin"></ion-icon>
+      Reportar
+    </ion-button>
+  </form>
+</ion-content>
