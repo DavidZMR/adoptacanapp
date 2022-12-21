@@ -28,9 +28,10 @@ const routes: Routes = [
     loadChildren: () => import('./pages/tab4/tab4.module').then( m => m.Tab4PageModule)
   },
   {
-    path: 'solicitud/:id',
-    loadChildren: () => import('./solicitud/solicitud.module').then( m => m.SolicitudPageModule)
-  }
+    path: 'cambiar-info',
+    loadChildren: () => import('./cambiar-info/cambiar-info.module').then( m => m.CambiarInfoPageModule)
+  },
+  
 ];
 @NgModule({
   imports: [

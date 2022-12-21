@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Cambiar Informacion</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form  (ngSubmit)="submit()">
+    <ion-item lines="full">
+      <ion-label position="floating">Nombres</ion-label>
+      <ion-input type="text" [(ngModel)]="nombres"  [ngModelOptions]="{standalone: true}"  required></ion-input>
+    </ion-item>
+
+    <ion-item lines="full">
+      <ion-label position="floating">Apellidos</ion-label>
+      <ion-input type="text" [(ngModel)]="apellidos"  [ngModelOptions]="{standalone: true}"  required></ion-input>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label position="floating">Edad</ion-label>
+      <ion-input type="number" min="18" [(ngModel)]="edad" [ngModelOptions]="{standalone: true}" placeholder="+18" required></ion-input>
+    </ion-item>
+    <ion-item lines="full">
+      <ion-label position="floating">Direccion</ion-label>
+      <ion-input type="text" [(ngModel)]="direccion"  [ngModelOptions]="{standalone: true}"  placeholder="calle #numero, fraccionamiento, municipio" required></ion-input>
+    </ion-item>
+
+    <ion-item lines="full">
+      <ion-label position="floating">Correo</ion-label>
+      <ion-input type="text" [(ngModel)]="correo"  [ngModelOptions]="{standalone: true}"  placeholder="correo@ejemplo.com" required></ion-input>
+    </ion-item>
+
+    <ion-row>
+      <ion-col>
+        <img [src]="foto" *ngIf="foto" />
+        <ion-button expand="block" fill="outline" (click)="addPhotoToGallery()">
+          
+          <ion-icon class="ion-margin" name="camera"></ion-icon>
+          
+          Foto de credencial (frontal)
+        </ion-button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+        <ion-button type="submit" color="danger" expand="block">Sign Up</ion-button>
+      </ion-col>
+    </ion-row>
+  </form>
+</ion-content>

@@ -39,4 +39,7 @@ export class PerrosService {
   getPerrosAdopcion(){
     return this.http.get<Response<PerroModel[]>>(`${environment.apisUrl}/perros/getPerrosAdopcion`);
   }
+  setSolicitudAdopcion(data: any){
+    return this.http.post<Response<PerroModel[]>>(`${environment.apisUrl}/perros/setSolicitudAdopcion`, data);
+  }
 }

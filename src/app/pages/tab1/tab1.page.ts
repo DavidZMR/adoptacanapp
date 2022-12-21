@@ -9,7 +9,10 @@ import { PerrosService } from 'src/app/services/perros.service';
   styleUrls: ['tab1.page.scss']
 })
 export class Tab1Page implements OnInit {
+  date = new Date;
+  fecha =this.date.toLocaleDateString()
 
+  idUsuario = localStorage.getItem('id')
   perros: any;
   constructor(
     private alertController: AlertController,
@@ -29,6 +32,14 @@ export class Tab1Page implements OnInit {
   handleRefresh(event: any) {
     setTimeout(() => {
       // Any calls to load data go here
+      this.perrosService.getPerrosAdopcion().subscribe((res)=>{
+        if(res.intResponse === 200){
+          this.perros = res.Result
+          this.perros = this.perros.perros
+        }else{
+  
+        }
+      })
       event.target.complete();
     }, 2000);
   };
@@ -55,9 +66,39 @@ export class Tab1Page implements OnInit {
 
     await alert.present();
   }
+  async presentAlertAdoptar() {
+    const alert = await this.alertController.create({
+      cssClass: 'custom-alert',
+      backdropDismiss: false,
+      header: 'Solicitud enviada',
+      subHeader: 'La solicitud para adoptar a este perrito esta en proceso',
+      message: 'espera el correo con la fecha y lugar de tu cita.',
+      buttons: [
+        {
+          text: 'Ok',
+          cssClass: 'alert-button-confirm',
+          
+        }
+      
+      ]
+    });
+
+    await alert.present();
+  }
 
   adoptar(id: any){
-    this.router.navigate(['/solicitud/'+id])
+    console.log(this.fecha)
+    let data ={
+      'intIdUsuario':this.idUsuario,
+      'intIdPerro': id,
+      'strFecha': this.fecha,
+      'strStatus': 'pendiente'
+    }
+    this.perrosService.setSolicitudAdopcion(data).subscribe((res)=>{
+      if(res.intResponse === 200){
+        this.presentAlertAdoptar()
+      }
+    })
   }
   
 }
